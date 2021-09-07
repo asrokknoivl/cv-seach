@@ -113,7 +113,7 @@ email, ce fichier en contient une copie.
 
 ### Design patterns
 
-* Slides : [CM-patterns.pdf](http://matthieu-moy.fr/cours/mif01/https://perso.liris.cnrs.fr/lionel.medini/enseignement/M1IF01/CM-patterns.pdf)
+* Slides : [CM-patterns.pdf](https://perso.liris.cnrs.fr/lionel.medini/enseignement/M1IF01/CM-patterns.pdf)
 
 * Vidéo du mardi 8/9 sur Youtube : [https://youtu.be/oal57dd73nY](https://youtu.be/oal57dd73nY)
 
