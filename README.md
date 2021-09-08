@@ -135,6 +135,7 @@ email, ce fichier en contient une copie.
   - Nautibus TD11 : Lionel Medini
   - Nautibus TD12 : Lucien Ndjie
   - Nautibus TD13 : Paul Iannetta
+  Pour les étudiants ne pouvant suivre en présentiel, une visio est également proposée : https://univ-lyon1.webex.com/meet/matthieu.moy (si besoin, joignable par téléphone au +33-1851-48835, code d'accès 846 529 139).
 
 * [TD1-design-patterns](http://matthieu-moy.fr/cours/mif01/TD1-patterns/TD-design-patterns.html)
 
