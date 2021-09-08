@@ -6,7 +6,7 @@
 
 * Emploi du temps : Cf. ADE.
   Attention : les groupes ne sont pas correctement entrés dans ADE.
-  Utilisez la ressource "M1 informatique" plus votre groupe pour voir l'emploi du temps.
+  Utilisez la ressource "M1 informatique" **plus votre groupe** pour voir l'emploi du temps.
 
 * Rendu du TP noté : vous devez avoir rempli le champ URL de TOMUSS avant vendredi 10 septembre 2021. Le rendu final est le dimanche 7 novembre 2021 à 23h59. Voir
   [projet-note.md](projet-note.md) pour un récapitulatif des consignes.
@@ -128,7 +128,7 @@ email, ce fichier en contient une copie.
 
 * Vidéo du mercredi 9/9 sur Youtube : [https://youtu.be/9oV0xDSrXes](https://youtu.be/9oV0xDSrXes)
 
-## TD 1 (10/9/2021): Design-patterns
+## TD 1 (10/9/2021, 9h45): Design-patterns
 
 * Salles : Cf. TOMUSS pour les étudiants (case MIF01_Salle_TD1_10/9)
   - Nautibus TD10 : Matthieu Moy
@@ -138,7 +138,7 @@ email, ce fichier en contient une copie.
 
 * [TD1-design-patterns](http://matthieu-moy.fr/cours/mif01/TD1-patterns/TD-design-patterns.html)
 
-## TP 4 (10/9/2021): Design patterns & refactoring
+## TP 4 (10/9/2021, 11h30): Design patterns & refactoring
 
 * Salles : 
   - Groupe A : Nautibus TP 1, Nautibus TP 2
