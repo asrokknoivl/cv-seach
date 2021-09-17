@@ -152,7 +152,7 @@ email, ce fichier en contient une copie.
 
 ## CM 6 (16/9/2021, 14h) : Test
 
-* Transparents de Sandrine Gouraud : à venir
+* [Transparents de Sandrine Gouraud](http://matthieu-moy.fr/cours/mif01/SandrineGouraud_16092021.pdf)
 
 * [Software Fail Watch, 5th
   edition](https://www.tricentis.com/wp-content/uploads/2019/01/Software-Fails-Watch-5th-edition.pdf)
