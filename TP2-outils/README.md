@@ -90,7 +90,7 @@ faut pas ajouter à vos dépôts. Vous allez donc configurer ce projet de
 manière à les ignorer. Pour cela vous allez utiliser en plus l'outil de
 gestion de tickets.
 
-#### Suppression éventuelle des fichiers qui n'auraient jamais du être là []{git-rm}
+#### Suppression éventuelle des fichiers qui n'auraient jamais du être là
 
 Les fichiers générés par Maven se trouvent tous dans le répertoire `target/`.
 Ils ne devraient pas être trackés par Git (personne n'a envie de faire des merge
