@@ -150,7 +150,7 @@ Créez maintenant une classe `ICharManipulator`, pour l'instant vide :
 ```java
 package fr.univ_lyon1.info.m1.tp_test;
 
-public CharManipulator implements ICharManipulator {
+public class CharManipulator implements ICharManipulator {
 
 }
 ```
