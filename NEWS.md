@@ -1,5 +1,18 @@
 Ce fichier contiendra les nouvelles du cours. Un mail sera envoyé quand le fichier est mis à jour.
 
+# 6/10/2021 : CM du 7/10 remplacé par un visionnage de vidéo
+
+Mon médecin m'a interdit de revenir vous faire cours demain :-(. Le CM de mif01 de 14h est annulé. Pour ne pas perturber le planning, le CM est remplacé par un visionnage de vidéos (à faire avant la semaine prochaine, mais pas obligatoirement sur le créneau de demain) :
+
+Fin du CM sur les cas d'utilisations et spécifications : https://youtu.be/sgfrdPIYqlQ?t=3750
+
+Introduction à l'agilité : https://youtu.be/r7FO3Y1BYq8
+
+On n'aura sans doute pas le temps de traiter officiellement la partie métaprogrammation, mais c'est un sujet rigolo et intéressant, vous pouvez regarder la vidéo si vous le souhaitez (35 minutes) : https://youtu.be/yfv-0Vzmlv4
+
+Je ferai mon possible pour être disponible sur le chat-info pendant l'après-midi, n'hésitez pas à poser des questions au fur et à mesure de la vidéo.
+
+Le TP de 15h45 est maintenu. Je vais essayer de me trouver un remplaçant, sinon les étudiants du groupe A pourront se répartir sur les places restantes des autres salles et/ou solliciter les enseignants des autres groupes.
 # 17/09/2021 : Nouvelles du cours
 
 Quelques informations importantes :
