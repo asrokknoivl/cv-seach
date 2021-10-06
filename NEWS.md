@@ -13,6 +13,7 @@ On n'aura sans doute pas le temps de traiter officiellement la partie métaprogr
 Je ferai mon possible pour être disponible sur le chat-info pendant l'après-midi, n'hésitez pas à poser des questions au fur et à mesure de la vidéo.
 
 Le TP de 15h45 est maintenu. Je vais essayer de me trouver un remplaçant, sinon les étudiants du groupe A pourront se répartir sur les places restantes des autres salles et/ou solliciter les enseignants des autres groupes.
+
 # 17/09/2021 : Nouvelles du cours
 
 Quelques informations importantes :

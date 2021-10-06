@@ -197,9 +197,16 @@ email, ce fichier en contient une copie.
 * Transparents : [08-agilite-slides.pdf](http://matthieu-moy.fr/cours/mif01/08-agilite-slides.pdf)
   (version imprimable : [08-agilite-handout.pdf](http://matthieu-moy.fr/cours/mif01/08-agilite-handout.pdf))
 
-## TP 7 (7/10/2021): tests
+## TP 7 (7/10/2021) : tests
 
-* Continuer avec : [TP4-tests/README.md](TP4-tests/README.md)
+* Salles :
+  - Groupe A : Nautibus TP 1, Nautibus TP 2
+  - Groupe B : Nautibus TP 3, Nautibus TP 4
+  - Groupe C : Nautibus TP 5, Nautibus TP 6
+  - Groupe D : Nautibus TP10, Nautibus TP12
+  - Groupe E : Nautibus TP13, Nautibus TP14
+
+* Sujet : continuer avec [TP4-tests/README.md](TP4-tests/README.md)
 
 ## CM 9 (14/10/2021) : Agilité (suite)
 
