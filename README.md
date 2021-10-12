@@ -217,11 +217,17 @@ email, ce fichier en contient une copie.
 * Transparents : [08-agilite-slides.pdf](http://matthieu-moy.fr/cours/mif01/08-agilite-slides.pdf)
   (version imprimable : [08-agilite-handout.pdf](http://matthieu-moy.fr/cours/mif01/08-agilite-handout.pdf))
 
-### Intervention de Levent Acar
+### Agilité et passage à l'échelle : la méthode Spotify (transparents de Levent Acar)
 
 * Vidéo : [<img src="https://mediacenter.univ-lyon1.fr/videos/MEDIA200913145620567/preview.jpg" width="128" height="72" />](https://mediacenter.univ-lyon1.fr/videos/?video=MEDIA200913145620567)
 
 ## TD 2 (14/10/2021) : Cas d'utilisation et coding styles
+
+* Salles : Cf. TOMUSS pour les étudiants (case Salle_TD2_14/10)
+  - Nautibus TD12 : Matthieu Moy
+  - Nautibus TD9 : Lionel Medini
+  - Nautibus TD10 : Lucien Ndjie
+  - Nautibus TD11 : Paul Iannetta
 
 * [TD2-uc-style/TD-usecase-et-style.pdf](http://matthieu-moy.fr/cours/mif01/TD2-uc-style/TD-usecase-et-style.pdf)
   (corrigé : [TD2-uc-style/TD-usecase-et-style-corrige.pdf](http://matthieu-moy.fr/cours/mif01/TD2-uc-style/TD-usecase-et-style-corrige.pdf))
