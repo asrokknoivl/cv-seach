@@ -10,6 +10,7 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -19,7 +20,7 @@ import javafx.stage.Stage;
 public class JfxView {
     private HBox searchSkillsBox;
     private VBox resultBox;
-
+    private ComboBox<String> comboBox;
     /**
      * Create the main view of the application.
      */
@@ -35,6 +36,8 @@ public class JfxView {
         Node searchSkillsBox = createCurrentSearchSkillsWidget();
         root.getChildren().add(searchSkillsBox);
 
+        Node strategyBox = createStrategySelection();
+        root.getChildren().add(strategyBox);
 
         Node search = createSearchWidget();
         root.getChildren().add(search);
@@ -103,20 +106,32 @@ public class JfxView {
             @Override
             public void handle(ActionEvent event) {
                 // TODO
-                ApplicantList listApplicants
-                    = new ApplicantListBuilder(new File(".")).build();
+                ApplicantList listApplicants = new ApplicantListBuilder(new File(".")).build();
+                String strategy = comboBox.getValue();
+                String [] s = strategy.split(" ");
+                boolean all = (s[0].equals("All"));
+                int n = Integer.parseInt(s[2]);
                 resultBox.getChildren().clear();
                 for (Applicant a : listApplicants) {
+                    double moyenne = 0;
                     boolean selected = true;
+                    double nom = 0;
+                    double denom = 0;
                     for (Node skill : searchSkillsBox.getChildren()) {
                         String skillName = ((Button) skill).getText();
-                        if (a.getSkill(skillName) < 50) {
+                        nom += a.getSkill(skillName);
+                        denom += 1;
+                        if (a.getSkill(skillName) < n) {
                             selected = false;
-                            break;
                         }
+                        moyenne = nom/denom;
+                    }if (!all){
+                        if (moyenne < 50){
+                            selected = false;
+                        }else{selected = true;}
                     }
                     if (selected) {
-                        resultBox.getChildren().add(new Label(a.getName()));
+                        resultBox.getChildren().addAll(new Label(a.getName()), new Label(Double.toString(moyenne)));
                     }
                 }
             }
@@ -132,4 +147,21 @@ public class JfxView {
         searchSkillsBox = new HBox();
         return searchSkillsBox;
     }
+
+    private Node createStrategySelection(){
+        HBox strategyBox = new HBox();
+        Label strategy = new Label("Strategy:");
+        comboBox = new ComboBox<>();
+        comboBox.getItems().addAll(
+                "All >= 50",
+                "All >= 60",
+                "Average >= 50"
+        );
+        strategyBox.getChildren().addAll(strategy, comboBox);
+        strategyBox.setSpacing(5);
+        return strategyBox;
+    }
+
+
+
 }
