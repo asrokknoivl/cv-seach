@@ -108,7 +108,7 @@ public class JfxView {
                 // TODO
                 ApplicantList listApplicants = new ApplicantListBuilder(new File(".")).build();
                 String strategy = comboBox.getValue();
-                String [] s = strategy.split(" ");
+                String[] s = strategy.split(" ");
                 boolean all = (s[0].equals("All"));
                 int n = Integer.parseInt(s[2]);
                 resultBox.getChildren().clear();
@@ -124,14 +124,19 @@ public class JfxView {
                         if (a.getSkill(skillName) < n) {
                             selected = false;
                         }
-                        moyenne = nom/denom;
-                    }if (!all){
-                        if (moyenne < 50){
+                        moyenne = nom / denom;
+
+                    }
+                    if (!all) {
+                        if (moyenne < 50) {
                             selected = false;
-                        }else{selected = true;}
+                        } else {
+                            selected = true;
+                        }
                     }
                     if (selected) {
-                        resultBox.getChildren().addAll(new Label(a.getName()), new Label(Double.toString(moyenne)));
+                        String m = Double.toString(moyenne);
+                        resultBox.getChildren().addAll(new Label(a.getName()), new Label(m));
                     }
                 }
             }
@@ -148,7 +153,7 @@ public class JfxView {
         return searchSkillsBox;
     }
 
-    private Node createStrategySelection(){
+    private Node createStrategySelection() {
         HBox strategyBox = new HBox();
         Label strategy = new Label("Strategy:");
         comboBox = new ComboBox<>();
