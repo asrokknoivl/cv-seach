@@ -20,15 +20,19 @@ public class SkillList implements Iterable<Skill>{
     public void clear(){
         skills.clear();
     }
+
     public int size(){
         return skills.size();
     }
+
     public void setSkills(SkillList skillList){
         this.skills = skillList.skills;
     }
+
     public List<Skill> getSkills(){
         return skills;
     }
+
     public void removeSkill(String s){
         skills.removeIf(skill -> skill.getSkill().equals(s));
     }

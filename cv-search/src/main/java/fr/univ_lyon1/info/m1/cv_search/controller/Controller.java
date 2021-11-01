@@ -12,7 +12,7 @@ public class Controller {
 
     public Controller(Model model) {
         this.model = model;
-        model.initStrategies();
+        model.getStrategyModel().initStrategies();
     }
 
     //Observer pattern implementation-------------------------------------------------------------------
@@ -34,33 +34,38 @@ public class Controller {
             view.updateApplicants();
         }
     }
-    //----------------------------------------------------------------------------------------------------
 
+    //Implementation of the 'Facade' and 'delegation' patterns--------------------------------------------
     public Object get(String what) {
         switch (what){
-            case "s": return model.getSkills(); //s : skills
-            case "a": return model.getApplicants(); // a : applicants
-            case "r": return model.getResApplicants(); // r : result applicants
-            case "st": return model.getStrategies(); // st : strategies
-            case "css": return model.getCurrentStrategyS(); // cs : current strategy : String
-            case "cs": return model.getCurrentStrategy(); // cs : current strategy : Strategy
+            case "s": return model.getSkillModel().getSkills(); //s : skills
+            case "a": return model.getApplicantModel().getApplicants(); // a : applicants
+            case "r": return model.getApplicantModel().getResApplicants(); // r : result applicants
+            case "st": return model.getStrategyModel().getStrategies(); // st : strategies
+            case "css": return model.getStrategyModel().getCurrentStrategyS(); // cs : current strategy : String
+            case "cs": return model.getStrategyModel().getCurrentStrategy(); // cs : current strategy : Strategy
         }
         return null;
     }
-    public void addSkill(Skill s){
-        model.addSkill(s);
-        notifyAllObservers_Skills();
+    public void add(String what, Element e){
+        switch (what){
+            case "s": model.getSkillModel().addSkill((Skill) e); notifyAllObservers_Skills();
+        }
     }
-    public void removeSkill(Skill s){
-        model.removeSkill(s);
-        notifyAllObservers_Skills();
+    public void remove(String what, Element e){
+        switch (what){
+            case "s": model.getSkillModel().removeSkill((Skill) e); notifyAllObservers_Skills();
+        }
     }
-    public void setCurrentStrategy(Strategy s){
-        model.setCurrentStrategy(s);
-        notifyAllObservers_Strategy();
+    public void set(String what, Element e){
+        switch (what){
+            case "cs": model.getStrategyModel().setCurrentStrategy((Strategy) e); notifyAllObservers_Strategy();
+        }
     }
-    public void filter(Strategy s){
-        model.filterApplicants(s);
-        notifyAllObservers_Applicants();
+    public void execute(String what, Element e){
+      switch (what){
+          case "filter": model.getApplicantModel().filterApplicants((Strategy) e); notifyAllObservers_Applicants();
+
+      }
     }
 }

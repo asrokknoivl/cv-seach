@@ -73,7 +73,7 @@ public class View extends ViewObserver {
                 if (text.equals("")) {
                     return; // Do nothing
                 }
-                ctrl.addSkill(new Skill(text));
+                ctrl.add("s", new Skill(text));
                 updateSkills();
                 textField.setText("");
                 textField.requestFocus();
@@ -98,7 +98,7 @@ public class View extends ViewObserver {
             button.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    ctrl.removeSkill(skill);
+                    ctrl.remove("s", skill);
                 }
             });
         }
@@ -111,7 +111,7 @@ public class View extends ViewObserver {
             strategyBox.getItems().add(s.getStrategy());
         }
         strategyBox.setOnHidden((event) -> {
-            ctrl.setCurrentStrategy(new Strategy((String) strategyBox.getValue()));
+            ctrl.set("cs", new Strategy((String) strategyBox.getValue()));
         });
 
         return strategyBox;
@@ -133,7 +133,7 @@ public class View extends ViewObserver {
         search.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                ctrl.filter((Strategy) ctrl.get("cs"));
+                ctrl.execute("filter", (Strategy) ctrl.get("cs"));
                 System.out.println("filterd");
             }
         });
@@ -150,7 +150,8 @@ public class View extends ViewObserver {
     public void updateApplicants() {
         resultBox.getChildren().clear();
         for (Applicant a : (ApplicantList)ctrl.get("r")){
-            resultBox.getChildren().add(new Label(a.getName()));
+            resultBox.getChildren().addAll(new Label(a.getName()), new Label(Double.toString(a.getMoyenne())));
+            resultBox.setSpacing(5);
         }
         show();
     }

@@ -3,9 +3,13 @@ package fr.univ_lyon1.info.m1.cv_search.model;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Applicant {
+public class Applicant extends Element {
     private Map<String, Integer> skills = new HashMap<>();
     private String name;
+    private double moyenne = 0;
+    public double getMoyenne() {return moyenne;}
+
+    public void setMoyenne(double moyenne) {this.moyenne = moyenne;}
 
     public int getSkill(String string) {
         return skills.getOrDefault(string, 0);
