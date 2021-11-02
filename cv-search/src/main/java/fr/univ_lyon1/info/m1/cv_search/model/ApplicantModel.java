@@ -1,6 +1,9 @@
 package fr.univ_lyon1.info.m1.cv_search.model;
 
+import fr.univ_lyon1.info.m1.cv_search.App;
+
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ApplicantModel implements IModel{
@@ -31,38 +34,66 @@ public class ApplicantModel implements IModel{
         this.applicants = applicants;
     }
 
-    public void filterApplicants(Strategy strategy){
-        System.out.println("here");
-        String strategyValue = strategy.getStrategy();
-        String[] s = strategyValue.split(" ");
-        boolean all = (s[0].equals("All"));
-        int n = Integer.parseInt(s[2]);
+    public int size_a(){
+        return applicants.size();
+    }
+
+    public int size_r(){
+        return resApplicants.size();
+    }
+
+    public List<Object> stat(Applicant a, int n){
+        List<Object> list = new ArrayList<Object>();
+        int size  = model.getSkillModel().sizeSkills();
+        double nom = 0;
+        boolean allSelected = true;
+        for (Skill skl: model.getSkillModel().getSkills()){
+            if (!model.getSkillModel().isValid(skl)) {
+                size--;
+                continue;
+            }
+            String sklValue = skl.getSkill().toLowerCase();
+            nom += a.getSkill(sklValue);
+            if (a.getSkill(sklValue) < n) {
+                allSelected = false;
+            }
+        }
+        list.add(nom/size);
+        list.add(allSelected);
+        return list;
+    }
+    public List<Object> isAccepted(Applicant a, String type, int val){
+        List<Object> list = new ArrayList<Object>();
+        boolean isAccepted = false;
+        switch (type){
+            case "All": list.add(stat(a, val).get(0)); isAccepted = (boolean) stat(a, val).get(1); list.add(isAccepted); return list;
+            case "Average": list.add(stat(a, val).get(0)); isAccepted = (double)stat(a, val).get(0)>= val; list.add(isAccepted); return list;
+            case "Harmonic": list.add(harmonicMean(a)); isAccepted = (double)harmonicMean(a)>= val; list.add(isAccepted); return list;
+        }
+        return null;
+    }
+    public void filterApplicants(String type, int val){
         resApplicants.clear();
         for (Applicant a :(ApplicantList) applicants) {
-            double moyenne = 0;
-            boolean selected = true;
-            double nom = 0;
-            double denom = 0;
-            for (Skill skl : model.getSkillModel().getSkills()) {
-                System.out.println(skl.getSkill());
-                String sklValue = skl.getSkill();
-                nom += a.getSkill(sklValue);
-                denom += 1;
-                if (a.getSkill(sklValue) < n) {
-                    selected = false;
-                }
-            }
-            moyenne = nom / denom;
-            if (!all && moyenne >= 50) {
-                selected = true;
-            }
-            if (selected){
-                a.setMoyenne(moyenne);
+            if ((boolean) isAccepted(a, type, val).get(1)){
+                a.setMoyenne((double) isAccepted(a, type, val).get(0));
                 resApplicants.addElement(a);
-                System.out.println(moyenne);
             }
         }
 
     }
-
+    public double harmonicMean(Applicant a)
+    {
+        double size = model.getSkillModel().sizeSkills();
+        double sum = 0.0;
+        for (Skill skl: model.getSkillModel().getSkills()){
+            if (!model.getSkillModel().isValid(skl)) {
+                size--;
+                continue;
+            }
+            String sklValue = skl.getSkill().toLowerCase();
+            sum += 1.0/a.getSkill(sklValue);
+        }
+        return size / sum;
+    }
 }

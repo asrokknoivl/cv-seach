@@ -133,7 +133,7 @@ public class View extends ViewObserver {
         search.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                ctrl.execute("filter", (Strategy) ctrl.get("cs"));
+                ctrl.execute("filter", ((Strategy)ctrl.get("cs")).getStrategy());
                 System.out.println("filterd");
             }
         });

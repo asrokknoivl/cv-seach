@@ -13,6 +13,7 @@ public class Controller {
     public Controller(Model model) {
         this.model = model;
         model.getStrategyModel().initStrategies();
+        model.getSkillModel().initValidSkills();
     }
 
     //Observer pattern implementation-------------------------------------------------------------------
@@ -62,10 +63,13 @@ public class Controller {
             case "cs": model.getStrategyModel().setCurrentStrategy((Strategy) e); notifyAllObservers_Strategy();
         }
     }
-    public void execute(String what, Element e){
-      switch (what){
-          case "filter": model.getApplicantModel().filterApplicants((Strategy) e); notifyAllObservers_Applicants();
-
+    public void execute(String what, String cs){
+        switch (what){
+            case "filter":
+                String type = cs.split(" ")[0];
+                int val = Integer.parseInt(cs.split(" ")[cs.split(" ").length-1]);
+                model.getApplicantModel().filterApplicants(type, val);
       }
+      notifyAllObservers_Applicants();
     }
 }

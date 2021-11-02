@@ -19,9 +19,11 @@ public class StrategyModel implements IModel {
         Strategy all50 = new Strategy("All >= 50");
         Strategy all60 = new Strategy("All >= 60");
         Strategy avg50 = new Strategy("Average >= 50");
+        Strategy hrm50 = new Strategy("Harmonic Mean >= 50");
         strategies.addElement(all50);
         strategies.addElement(all60);
         strategies.addElement(avg50);
+        strategies.addElement(hrm50);
     }
 
     public StrategyList getStrategies() {
