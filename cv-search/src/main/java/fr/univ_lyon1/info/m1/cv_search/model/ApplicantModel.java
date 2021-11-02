@@ -1,17 +1,22 @@
 package fr.univ_lyon1.info.m1.cv_search.model;
 
 import java.io.File;
+import java.util.List;
 
-public class ApplicantModel{
-    private ApplicantList applicants = new ApplicantListBuilder(new File(".")).build(); //initialized
-    private ApplicantList resApplicants = new ApplicantList();
+public class ApplicantModel implements IModel{
+    ListFactory listFactory;
+    private IElementList applicants;
+    private IElementList resApplicants;
     private Model model;
-    public ApplicantModel(Model model){
+    public ApplicantModel(Model model, ListFactory listFactory){
         this.model = model;
+        this.listFactory = listFactory;
+        applicants = (ApplicantList) listFactory.getListOfElements("Applicants:init");
+        resApplicants = (ApplicantList) listFactory.getListOfElements("Applicants");
     }
 
     public ApplicantList getResApplicants() {
-        return resApplicants;
+        return (ApplicantList) resApplicants;
     }
 
     public void setResApplicants(ApplicantList applicants) {
@@ -19,7 +24,7 @@ public class ApplicantModel{
     }
 
     public ApplicantList getApplicants() {
-        return applicants;
+        return (ApplicantList) applicants;
     }
 
     public void setApplicants(ApplicantList applicants) {
@@ -27,12 +32,13 @@ public class ApplicantModel{
     }
 
     public void filterApplicants(Strategy strategy){
+        System.out.println("here");
         String strategyValue = strategy.getStrategy();
         String[] s = strategyValue.split(" ");
         boolean all = (s[0].equals("All"));
         int n = Integer.parseInt(s[2]);
         resApplicants.clear();
-        for (Applicant a : applicants) {
+        for (Applicant a :(ApplicantList) applicants) {
             double moyenne = 0;
             boolean selected = true;
             double nom = 0;
@@ -52,7 +58,7 @@ public class ApplicantModel{
             }
             if (selected){
                 a.setMoyenne(moyenne);
-                resApplicants.add(a);
+                resApplicants.addElement(a);
                 System.out.println(moyenne);
             }
         }

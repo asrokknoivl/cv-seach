@@ -1,12 +1,17 @@
 package fr.univ_lyon1.info.m1.cv_search.model;
 
-public class StrategyModel {
-    private StrategyList strategies = new StrategyList();
+import java.util.List;
+
+public class StrategyModel implements IModel {
+    ListFactory listFactory;
+    private IElementList strategies;
     private Strategy currentStrategy = new Strategy("All >= 50");
     private Model model;
 
-    public StrategyModel(Model model){
+    public StrategyModel(Model model, ListFactory listFactory){
         this.model = model;
+        this.listFactory = listFactory;
+        strategies = (IElementList) listFactory.getListOfElements("Strategies");
     }
     //STRATEGIES
     //initialize current strategies into the app
@@ -14,13 +19,13 @@ public class StrategyModel {
         Strategy all50 = new Strategy("All >= 50");
         Strategy all60 = new Strategy("All >= 60");
         Strategy avg50 = new Strategy("Average >= 50");
-        strategies.addSkill(all50);
-        strategies.addSkill(all60);
-        strategies.addSkill(avg50);
+        strategies.addElement(all50);
+        strategies.addElement(all60);
+        strategies.addElement(avg50);
     }
 
     public StrategyList getStrategies() {
-        return strategies;
+        return (StrategyList) strategies;
     }
 
     public void setStrategies(StrategyList strategies) {

@@ -4,26 +4,32 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class SkillList implements Iterable<Skill>{
+public class SkillList implements Iterable<Skill>, IElementList{
     private List<Skill> skills = new ArrayList<Skill>();
     @Override
     public Iterator<Skill> iterator() {
         return skills.iterator();
     }
 
-    public void addSkill(Skill s){
-        skills.add(s);
+    @Override
+    public void addElement(Element e) {
+        skills.add((Skill) e);
     }
-    public void removeSkill(Skill s){
-        skills.remove(s);
+
+    @Override
+    public void removeElement(Element e) {
+        skills.remove((Skill) e);
     }
+
+    @Override
     public void clear(){
         skills.clear();
     }
-
+    @Override
     public int size(){
         return skills.size();
     }
+
 
     public void setSkills(SkillList skillList){
         this.skills = skillList.skills;
@@ -32,10 +38,5 @@ public class SkillList implements Iterable<Skill>{
     public List<Skill> getSkills(){
         return skills;
     }
-
-    public void removeSkill(String s){
-        skills.removeIf(skill -> skill.getSkill().equals(s));
-    }
-
 
 }

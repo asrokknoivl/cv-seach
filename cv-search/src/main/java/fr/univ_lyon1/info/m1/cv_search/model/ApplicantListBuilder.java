@@ -18,7 +18,7 @@ public class ApplicantListBuilder {
         for (File f : directory.listFiles()) {
             if (f.isFile() && f.getName().endsWith(".yaml")) {
                 Applicant a = new ApplicantBuilder(f).build();
-                applicants.add(a);
+                applicants.addElement(a);
             }
         }
         return applicants;
