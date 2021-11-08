@@ -1,10 +1,12 @@
 package fr.univ_lyon1.info.m1.cv_search.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Applicant extends Element {
     private Map<String, Integer> skills = new HashMap<>();
+    private ExperienceList experiences;
     private String name;
     private double moyenne = 0;
     public double getMoyenne() {return moyenne;}
@@ -26,4 +28,13 @@ public class Applicant extends Element {
     public void setName(String name) {
         this.name = name;
     }
+
+    public ExperienceList getExperiences() {
+        return experiences;
+    }
+
+    public void setExperiences(ExperienceList experiences) {
+        this.experiences = experiences;
+    }
+
 }

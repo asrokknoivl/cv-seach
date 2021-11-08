@@ -133,8 +133,7 @@ public class View extends ViewObserver {
         search.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                ctrl.execute("filter", ((Strategy)ctrl.get("cs")).getStrategy());
-                System.out.println("filterd");
+                ctrl.filter(((Strategy)ctrl.get("cs")).getStrategy());
             }
         });
         return search;
@@ -155,5 +154,24 @@ public class View extends ViewObserver {
         }
         show();
     }
-
+    /*
+    private Node createExperienceWidget() {
+        HBox expBox = new HBox();
+        Label labelExp = new Label("Experience: ");
+        TextField textFieldE = new TextField();
+        Label labelDuration = new Label("Duration (years): ");
+        TextField textFieldD = new TextField();
+        Button submitButton = new Button("Add Experience");
+        expBox.getChildren().addAll(labelExp, textFieldE, labelDuration, textFieldD, submitButton);
+        expBox.setSpacing(10);
+        submitButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                ctrl.execute("filter", ((Strategy)ctrl.get("cs")).getStrategy());
+                System.out.println("filterd");
+            }
+        });
+        return search;
+    }
+*/
 }

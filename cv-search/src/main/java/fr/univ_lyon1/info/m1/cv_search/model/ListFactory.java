@@ -10,6 +10,7 @@ public class ListFactory {
             case "Applicants": return new ApplicantList();
             case "Skills": return new SkillList();
             case "Strategies": return new StrategyList();
+            case "Experiences": return new ExperienceList();
         }
         return null;
     }
