@@ -28,6 +28,7 @@ public class ApplicantBuilder {
         Applicant a = new Applicant();
         Yaml yaml = new Yaml();
         Map<String, Object> map;
+        int profExp = 0;
         try {
             map = yaml.load(new FileInputStream(file));
         } catch (FileNotFoundException e) {
@@ -48,6 +49,9 @@ public class ApplicantBuilder {
             Integer value = skills.get(skill);
             a.setSkill(skill, value);
         }
+
+
+
         Map<String, HashMap> experiences = (Map<String, HashMap>) map.get("experience");
 
         for (String exp : experiences.keySet()){
@@ -59,7 +63,9 @@ public class ApplicantBuilder {
             e.setKeywords((ArrayList) expSpecs.get("keywords"));
             e.setDuration((int)expSpecs.get("end") -(int) expSpecs.get("start"));
             expList.addElement(e);
+            profExp += ((int)expSpecs.get("end") -(int) expSpecs.get("start"));
         }
+        a.setProfessionalExp(profExp);
         a.setExperiences(expList);
         return a;
     }

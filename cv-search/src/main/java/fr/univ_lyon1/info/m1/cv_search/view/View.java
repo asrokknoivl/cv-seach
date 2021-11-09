@@ -28,9 +28,10 @@ public class View extends ViewObserver {
     private HBox searchSkillsBox = new HBox(); //
     private VBox resultBox = new VBox();
     private VBox expBox = new VBox();
+    private HBox professionalExpBox = new HBox();
 
     //constructor
-    public View(Controller ctrl, Stage stage, int width, int height){
+    public View(Controller ctrl, Stage stage, int width, int height) {
         this.ctrl = ctrl;
         this.ctrl.attach(this);
         this.stage = stage;
@@ -38,13 +39,15 @@ public class View extends ViewObserver {
         this.height = height;
         strategyBox = createStrategySelectionWidget();
     }
+
     //main display function
-    public void show(){
+    public void show() {
         stage.setTitle("Search for CV");
         VBox skills = new VBox();
         VBox strategies = new VBox();
         VBox exps = new VBox();
         VBox root = new VBox();
+        VBox exp = new VBox();
 
         Node newSkillBox = createNewSkillWidget();
         Node titleSkills = new Text("Added Skills");
@@ -64,6 +67,13 @@ public class View extends ViewObserver {
         Node searchButton = createSearchWidget();
         root.getChildren().add(searchButton);
 
+        Node profExpBox = createProfExpBox();
+        Node professionalExperience = getProfessionalExpBox();
+        exp.getChildren().addAll(profExpBox, professionalExperience);
+        exp.setSpacing(10);
+
+        root.getChildren().add(exp);
+
         Node titleRes = new Text("Matching Results");
         Node resultBox = getResultBox();
         root.getChildren().addAll(titleRes, resultBox);
@@ -81,22 +91,19 @@ public class View extends ViewObserver {
         HBox newSkillBox = new HBox();
         Label labelSkill = new Label("Skill:");
         TextField textField = new TextField();
-        Label labelExp = new Label("Experience:");
-        TextField textFieldE = new TextField();
         Button submitButton = new Button("Add skill");
-        box.getChildren().addAll(labelSkill, textField, labelExp, textFieldE, submitButton);
+        box.getChildren().addAll(labelSkill, textField, submitButton);
         box.setAlignment(Pos.BASELINE_CENTER);
         box.setSpacing(10);
         newSkillBox.getChildren().add(box);
         EventHandler<ActionEvent> skillHandler = new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                String skill = textField.getText().strip();
-                String exp = textField.getText().strip();
-                if (skill.equals("")) {
+                String text = textField.getText().strip();
+                if (text.equals("")) {
                     return; // Do nothing
                 }
-                ctrl.add("s", new Skill(skill));
+                ctrl.add("s", new Skill(text));
                 updateSkills();
                 textField.setText("");
                 textField.requestFocus();
@@ -108,21 +115,21 @@ public class View extends ViewObserver {
         return newSkillBox;
     }
 
-    public Node getSearchSkillsBox(){
+    public Node getSearchSkillsBox() {
         return searchSkillsBox;
     }
 
     @Override
-    public void updateSkills(){
+    public void updateSkills() {
         searchSkillsBox.getChildren().clear();
-        for (Skill skill : (SkillList) ctrl.get("s")){
+        for (Skill skill : (SkillList) ctrl.get("s")) {
             HBox newSkill = new HBox();
             Label skillLabel = new Label(skill.getSkill());
             Button button = new Button("x");
             button.setPadding(new Insets(8));
             newSkill.setStyle("-fx-padding: 2;" + "-fx-border-style: solid inside;"
-                                   + "-fx-border-width: 1;" + "-fx-border-insets: 5;"
-                                   + "-fx-border-radius: 5;" + "-fx-border-color: black;");
+                    + "-fx-border-width: 1;" + "-fx-border-insets: 5;"
+                    + "-fx-border-radius: 5;" + "-fx-border-color: black;");
             newSkill.setAlignment(Pos.BASELINE_CENTER);
             newSkill.getChildren().addAll(skillLabel, button);
             searchSkillsBox.getChildren().addAll(newSkill);
@@ -139,16 +146,18 @@ public class View extends ViewObserver {
 
     private ComboBox createStrategySelectionWidget() {
         ComboBox strategyBox = new ComboBox();
-        for (Strategy s : (StrategyList) ctrl.get("st")){
+        for (Strategy s : (StrategyList) ctrl.get("st")) {
             strategyBox.getItems().add(s.getStrategy());
         }
         strategyBox.setOnHidden((event) -> {
             ctrl.set("cs", new Strategy((String) strategyBox.getValue()));
         });
+        strategyBox.setValue(ctrl.get("css"));
 
         return strategyBox;
     }
-    private Node getStrategySet(){
+
+    private Node getStrategySet() {
         HBox strategySet = new HBox();
         HBox box = new HBox();
         Label strategy = new Label("Strategy:");
@@ -158,8 +167,9 @@ public class View extends ViewObserver {
         strategySet.getChildren().add(box);
         return strategySet;
     }
+
     @Override
-    public void updateStrategy(){
+    public void updateStrategy() {
         strategyBox.setValue(ctrl.get("css"));
         show();
     }
@@ -170,14 +180,14 @@ public class View extends ViewObserver {
         search.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                ctrl.filter(((Strategy)ctrl.get("cs")).getStrategy());
+                ctrl.filter(((Strategy) ctrl.get("cs")).getStrategy());
             }
         });
         return search;
     }
 
 
-    private Node getResultBox(){
+    private Node getResultBox() {
         return resultBox;
     }
 
@@ -185,7 +195,7 @@ public class View extends ViewObserver {
     @Override
     public void updateApplicants() {
         resultBox.getChildren().clear();
-        for (Applicant a : (ApplicantList)ctrl.get("r")){
+        for (Applicant a : (ApplicantList) ctrl.get("r")) {
             resultBox.getChildren().addAll(new Label(a.getName()), new Label(Double.toString(a.getMoyenne())));
             resultBox.setSpacing(5);
         }
@@ -229,17 +239,18 @@ public class View extends ViewObserver {
         textFieldE.setOnAction(handler);
         return expBox;
     }
+
     @Override
-    public void updateExperiences(){
+    public void updateExperiences() {
         expBox.getChildren().clear();
-        for (Experience e : (ExperienceList) ctrl.get("exp")){
+        for (Experience e : (ExperienceList) ctrl.get("exp")) {
             HBox newExperience = new HBox();
             Text labelCompany = new Text("Experience at: ");
             Text company = new Text(e.getCompany());
-            company.setFill(Color.RED);
+            company.setFill(Color.DARKMAGENTA);
             Text labelDuration = new Text("Number of years: ");
             Text duration = new Text(e.getDurationS());
-            duration.setFill(Color.RED);
+            duration.setFill(Color.DARKMAGENTA);
             Button buttonRemove = new Button("x");
             newExperience.setSpacing(15);
             buttonRemove.setOnAction(new EventHandler<ActionEvent>() {
@@ -257,7 +268,38 @@ public class View extends ViewObserver {
         }
         show();
     }
-    private Node getExpBox(){
+
+    private Node getExpBox() {
         return expBox;
+    }
+
+    private Node getProfessionalExpBox() {
+        professionalExpBox.getChildren().clear();
+        int profExp = (int) ctrl.get("pexp");
+        professionalExpBox.getChildren().addAll(new Text(Integer.toString(profExp)), new Text(" years"));
+        return professionalExpBox;
+    }
+
+    private Node createProfExpBox() {
+        HBox box = new HBox();
+        Label profExpLabel = new Label("Total professional experience (years):");
+        TextField profExpText = new TextField();
+        Button button = new Button("change");
+        box.setSpacing(10);
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                int pexp = Integer.parseInt(profExpText.getText());
+                ctrl.setProfExp(pexp);
+                updateProfExp();
+            }
+        });
+        box.getChildren().addAll(profExpLabel, profExpText, button);
+        box.setAlignment(Pos.CENTER_LEFT);
+        return box;
+    }
+    @Override
+    public void updateProfExp(){
+        show();
     }
 }

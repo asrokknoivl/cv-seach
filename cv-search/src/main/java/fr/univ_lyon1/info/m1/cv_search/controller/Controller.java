@@ -51,6 +51,7 @@ public class Controller {
             case "css": return model.getStrategyModel().getCurrentStrategyS(); // cs : current strategy : String
             case "cs": return model.getStrategyModel().getCurrentStrategy(); // cs : current strategy : Strategy
             case "exp": return model.getExperienceModel().getExperiences(); // exp : experience :')
+            case "pexp": return model.getApplicantModel().getProfExp(); // pexp : Professional experience :')
         }
         return null;
     }
@@ -72,6 +73,10 @@ public class Controller {
         switch (what){
             case "cs": model.getStrategyModel().setCurrentStrategy((Strategy) e); notifyAllObservers_Strategy();
         }
+    }
+    public void setProfExp(int pexp){
+        model.getApplicantModel().setProfExp(pexp);
+        notifyAllObservers_Applicants();
     }
     public void filter(String strategy){
         int val = Integer.parseInt(strategy.split(" ")[strategy.split(" ").length-1]);

@@ -9,6 +9,7 @@ public class Applicant extends Element {
     private ExperienceList experiences;
     private String name;
     private double moyenne = 0;
+    private int professionalExp= 0;
     public double getMoyenne() {return moyenne;}
 
     public void setMoyenne(double moyenne) {this.moyenne = moyenne;}
@@ -36,5 +37,22 @@ public class Applicant extends Element {
     public void setExperiences(ExperienceList experiences) {
         this.experiences = experiences;
     }
+
+    public Map<String, Integer> getSkills() {
+        return skills;
+    }
+
+    public void setSkills(Map<String, Integer> skills) {
+        this.skills = skills;
+    }
+
+    public int getProfessionalExp() {
+        return professionalExp;
+    }
+
+    public void setProfessionalExp(int professionalExp) {
+        this.professionalExp = professionalExp;
+    }
+
 
 }

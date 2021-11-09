@@ -10,7 +10,7 @@ public class ApplicantModel implements IModel{
     private IStrategy sAll = new StrategyAll();
     private IStrategy sHrmnc = new StrategyHarmonic();
     private IStrategy sAvg = new StrategyAverage();
-
+    private int ProfExp = 0;
     public ApplicantModel(Model model, ListFactory listFactory){
         this.model = model;
         this.listFactory = listFactory;
@@ -18,6 +18,12 @@ public class ApplicantModel implements IModel{
         resApplicants = (ApplicantList) listFactory.getListOfElements("Applicants");
     }
 
+    public void setProfExp(int pexp){
+        this.ProfExp = pexp;
+    }
+    public int getProfExp(){
+        return ProfExp;
+    }
     public ApplicantList getResApplicants() {
         return (ApplicantList) resApplicants;
     }
@@ -47,7 +53,8 @@ public class ApplicantModel implements IModel{
         for (Applicant a :(ApplicantList) applicants) {
             boolean accepted = (boolean) strategy.isAccepted(a, val, model).get("accepted");
             boolean expChecked = filterExperience(a);
-            if (accepted && expChecked){
+            int pexp = model.getApplicantModel().getProfExp();
+            if (accepted && expChecked && a.getProfessionalExp()>=pexp){
                 double moy = (double) strategy.isAccepted(a, val, model).get("moyenne");
                 a.setMoyenne(moy);
                 resApplicants.addElement(a);
