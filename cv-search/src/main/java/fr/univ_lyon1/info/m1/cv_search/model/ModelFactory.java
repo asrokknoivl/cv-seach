@@ -15,6 +15,7 @@ public class ModelFactory {
             case "Applicants": return new ApplicantModel(model, listFactory);
             case "Skills": return new SkillModel(model, listFactory);
             case "Strategies": return new StrategyModel(model, listFactory);
+            case "Experiences": return new ExperienceModel(model, listFactory);
         }
         return null;
     }

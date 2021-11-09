@@ -21,10 +21,15 @@ public class Model {
         return (StrategyModel) strategyModel;
     }
 
+    public ExperienceModel getExperienceModel() {
+        return (ExperienceModel) experienceModel;
+    }
+
     private ListFactory listFactory = new ListFactory();
     private ModelFactory modelFactory = new ModelFactory(this, listFactory);
     private IModel skillModel = (SkillModel) modelFactory.getListOfElements("Skills");
     private IModel applicantModel = (ApplicantModel) modelFactory.getListOfElements("Applicants");
     private IModel strategyModel = (StrategyModel) modelFactory.getListOfElements("Strategies");
+    private IModel experienceModel = (ExperienceModel) modelFactory.getListOfElements("Experiences");
 
 }

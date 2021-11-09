@@ -18,8 +18,8 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         Model model = new Model();
         Controller controller = new Controller(model);
-        new View(controller, stage, 600, 600).show();
-        new View(controller, new Stage(), 500, 500).show();
+        new View(controller, stage, 800, 800).show();
+        //new View(controller, new Stage(), 500, 500).show();
     }
 
 

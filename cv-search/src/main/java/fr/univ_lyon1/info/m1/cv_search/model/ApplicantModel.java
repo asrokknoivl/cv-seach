@@ -1,5 +1,7 @@
 package fr.univ_lyon1.info.m1.cv_search.model;
 
+import fr.univ_lyon1.info.m1.cv_search.App;
+
 public class ApplicantModel implements IModel{
     ListFactory listFactory;
     private IElementList applicants;
@@ -44,7 +46,8 @@ public class ApplicantModel implements IModel{
         resApplicants.clear();
         for (Applicant a :(ApplicantList) applicants) {
             boolean accepted = (boolean) strategy.isAccepted(a, val, model).get("accepted");
-            if (accepted){
+            boolean expChecked = filterExperience(a);
+            if (accepted && expChecked){
                 double moy = (double) strategy.isAccepted(a, val, model).get("moyenne");
                 a.setMoyenne(moy);
                 resApplicants.addElement(a);
@@ -60,4 +63,30 @@ public class ApplicantModel implements IModel{
     public void filterApplicantsByHarmonicAverage(int val){
         filterApplicants(val ,sHrmnc);
     }
+    public boolean filterApplicantByExperience(Applicant a, Experience exp) {
+        for (Experience e : (ExperienceList) a.getExperiences()) {
+            if (e.getCompany().toLowerCase().equals(exp.getCompany().toLowerCase())) {
+                if(exp.getDurationS().equals("undefined")){
+                    return true;
+                }else{
+                    System.out.println(e.getDuration());
+                    System.out.println(exp.getDurationS());
+                    if (e.getDuration() >= Integer.parseInt(exp.getDurationS())){
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean filterExperience(Applicant a){
+        for (Experience exp: (ExperienceList)model.getExperienceModel().getExperiences()){
+            if (!filterApplicantByExperience(a, exp)){
+                return false;
+            }
+        }
+        return true;
+    }
+
 }

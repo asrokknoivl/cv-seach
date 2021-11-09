@@ -6,8 +6,19 @@ import java.util.List;
 public class Experience extends Element {
     private String company;
     private int duration;
+    private String durationS;
     private int startDate;
     private int endDate;
+
+    public Experience(){};
+    public Experience(String company, int duration){
+        this.company = company;
+        this.duration = duration;
+    }
+    public Experience(String company, String duration){
+        this.company = company;
+        this.durationS = duration;
+    }
 
     private List<String> keywords = new ArrayList<>();
 
@@ -50,4 +61,14 @@ public class Experience extends Element {
     public void setKeywords(List<String> keywords) {
         this.keywords = keywords;
     }
+
+    public String getDurationS() {
+        return durationS;
+    }
+
+    public void setDurationS(String durationS) {
+        this.durationS = durationS;
+    }
+
+
 }

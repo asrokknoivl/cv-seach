@@ -7,4 +7,5 @@ public abstract class ViewObserver {
     public abstract void updateSkills();
     public abstract void updateStrategy();
     public abstract void updateApplicants();
+    public abstract void updateExperiences();
 }

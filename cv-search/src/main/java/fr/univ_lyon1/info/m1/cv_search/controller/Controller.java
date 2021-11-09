@@ -35,6 +35,11 @@ public class Controller {
             view.updateApplicants();
         }
     }
+    public void notifyAllObservers_Experiences(){
+        for (ViewObserver view : views){
+            view.updateExperiences();
+        }
+    }
 
     //Implementation of the 'Facade' and 'delegation' patterns--------------------------------------------
     public Object get(String what) {
@@ -45,18 +50,23 @@ public class Controller {
             case "st": return model.getStrategyModel().getStrategies(); // st : strategies
             case "css": return model.getStrategyModel().getCurrentStrategyS(); // cs : current strategy : String
             case "cs": return model.getStrategyModel().getCurrentStrategy(); // cs : current strategy : Strategy
+            case "exp": return model.getExperienceModel().getExperiences(); // exp : experience :')
         }
         return null;
     }
     public void add(String what, Element e){
         switch (what){
-            case "s": model.getSkillModel().addSkill((Skill) e); notifyAllObservers_Skills();
+            case "s": model.getSkillModel().addSkill((Skill) e);notifyAllObservers_Skills();break;
+            case "exp": model.getExperienceModel().addExp((Experience) e);notifyAllObservers_Experiences();break;
         }
+
     }
     public void remove(String what, Element e){
         switch (what){
-            case "s": model.getSkillModel().removeSkill((Skill) e); notifyAllObservers_Skills();
+            case "s": model.getSkillModel().removeSkill((Skill) e);notifyAllObservers_Skills();break;
+            case "exp": model.getExperienceModel().removeExp((Experience) e);notifyAllObservers_Experiences();break;
         }
+
     }
     public void set(String what, Element e){
         switch (what){
@@ -64,7 +74,6 @@ public class Controller {
         }
     }
     public void filter(String strategy){
-        System.out.println("fuck");
         int val = Integer.parseInt(strategy.split(" ")[strategy.split(" ").length-1]);
         String type = strategy.split(" ")[0];
         System.out.println(type);
@@ -75,4 +84,6 @@ public class Controller {
       }
       notifyAllObservers_Applicants();
     }
+
+
 }
