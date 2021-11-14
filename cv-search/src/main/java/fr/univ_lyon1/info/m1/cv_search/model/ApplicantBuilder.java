@@ -54,16 +54,16 @@ public class ApplicantBuilder {
 
         Map<String, HashMap> experiences = (Map<String, HashMap>) map.get("experience");
 
-        for (String exp : experiences.keySet()){
+        for (String exp : experiences.keySet()) {
             Experience e = new Experience();
             e.setCompany(exp);
             Map<String, Object> expSpecs = experiences.get(exp);
             e.setStartDate((int) expSpecs.get("start"));
             e.setEndDate((int) expSpecs.get("end"));
             e.setKeywords((ArrayList) expSpecs.get("keywords"));
-            e.setDuration((int)expSpecs.get("end") -(int) expSpecs.get("start"));
+            e.setDuration((int) expSpecs.get("end") - (int) expSpecs.get("start"));
             expList.addElement(e);
-            profExp += ((int)expSpecs.get("end") -(int) expSpecs.get("start"));
+            profExp += ((int) expSpecs.get("end") - (int) expSpecs.get("start"));
         }
         a.setProfessionalExp(profExp);
         a.setExperiences(expList);

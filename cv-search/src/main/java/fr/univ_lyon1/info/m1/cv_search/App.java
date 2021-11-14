@@ -6,8 +6,6 @@ import fr.univ_lyon1.info.m1.cv_search.view.View;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-import java.awt.*;
-
 /**
  * Main class for the application (structure imposed by JavaFX).
  */
@@ -20,9 +18,8 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         Model model = new Model();
         Controller controller = new Controller(model);
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        new View(controller, stage,(int) screenSize.getWidth() - 100, (int)screenSize.getHeight() - 100).show();
-        //new View(controller, new Stage(), 500, 500).show();
+        new View(controller, stage, 800, 600).show();
+        new View(controller, new Stage(), 500, 500).show();
     }
 
 

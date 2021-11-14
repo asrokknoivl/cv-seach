@@ -10,12 +10,12 @@ public class Experience extends Element {
     private int startDate;
     private int endDate;
 
-    public Experience(){};
-    public Experience(String company, int duration){
+    public Experience() { };
+    public Experience(String company, int duration) {
         this.company = company;
         this.duration = duration;
     }
-    public Experience(String company, String duration){
+    public Experience(String company, String duration) {
         this.company = company;
         this.durationS = duration;
     }

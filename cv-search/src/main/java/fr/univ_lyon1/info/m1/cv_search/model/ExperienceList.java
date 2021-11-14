@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class ExperienceList implements Iterable<Experience>{
-    List<Experience> list = new ArrayList<Experience>();
+public class ExperienceList implements Iterable<Experience> {
+    private List<Experience> list = new ArrayList<Experience>();
 
     public List<Experience> getList() {
         return list;

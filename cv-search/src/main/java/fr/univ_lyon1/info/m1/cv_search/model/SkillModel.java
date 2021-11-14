@@ -1,9 +1,7 @@
 package fr.univ_lyon1.info.m1.cv_search.model;
 
-import java.util.Collection;
-
-public class SkillModel implements IModel{
-    ListFactory listFactory;
+public class SkillModel extends IModel {
+    private ListFactory listFactory;
     private SkillList skills;
     private final SkillList validSkills;
     private Model model;
@@ -13,20 +11,20 @@ public class SkillModel implements IModel{
         return validSize;
     }
 
-    public void decrementValidSize(){
+    public void decrementValidSize() {
         this.validSize--;
     }
     public void setValidSize(int validSize) {
         this.validSize = validSize;
     }
-    public SkillModel(Model model, ListFactory listFactory){
+    public SkillModel(Model model, ListFactory listFactory) {
         this.listFactory = listFactory;
         this.model = model;
         skills  = (SkillList) listFactory.getListOfElements("Skills");
         validSkills = (SkillList) listFactory.getListOfElements("Skills");
         validSize = validSkills.size();
     }
-    public void initValidSkills(){
+    public void initValidSkills() {
         validSkills.addElement(new Skill("c"));
         validSkills.addElement(new Skill("c++"));
         validSkills.addElement(new Skill("java"));
@@ -42,11 +40,14 @@ public class SkillModel implements IModel{
         validSkills.addElement(new Skill("go"));
         validSkills.addElement(new Skill("prolog"));
     }
-    public void addSkill(Skill s){
+    public void addSkill(Skill s) {
         skills.addElement(s);
     }
-    public void removeSkill(Skill s){skills.removeElement(s); }
-    public void clearSkills(){skills.clear();}
+    public void removeSkill(Skill s) {
+        skills.removeElement(s); }
+    public void clearSkills() {
+        skills.clear();
+    }
     public SkillList getSkills() {
         return (SkillList) skills;
     }
@@ -54,15 +55,15 @@ public class SkillModel implements IModel{
     public void setSkills(SkillList skills) {
         this.skills = skills;
     }
-    public boolean isValid(Skill skill){
-        for (Skill s : (SkillList)validSkills){
-            if (s.getSkill().equals(skill.getSkill().toLowerCase())){
+    public boolean isValid(Skill skill) {
+        for (Skill s : (SkillList) validSkills) {
+            if (s.getSkill().equals(skill.getSkill().toLowerCase())) {
                 return true;
             }
         }
         return false;
     }
-    public int sizeSkills(){
+    public int sizeSkills() {
         return skills.size();
     }
 }

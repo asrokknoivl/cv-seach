@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class SkillList implements Iterable<Skill>{
+public class SkillList implements Iterable<Skill> {
     private List<Skill> skills = new ArrayList<Skill>();
     @Override
     public Iterator<Skill> iterator() {
@@ -17,16 +17,16 @@ public class SkillList implements Iterable<Skill>{
     public void removeElement(Element e) {
         skills.remove((Skill) e);
     }
-    public void clear(){
+    public void clear() {
         skills.clear();
     }
-    public int size(){
+    public int size() {
         return skills.size();
     }
-    public void setSkills(SkillList skillList){
+    public void setSkills(SkillList skillList) {
         this.skills = skillList.skills;
     }
-    public List<Skill> getSkills(){
+    public List<Skill> getSkills() {
         return skills;
     }
 

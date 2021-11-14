@@ -11,18 +11,18 @@ public class Skill extends Element {
     public void setExperience(int experience) {
         this.experience = experience;
     }
-    public Skill(String skill){
+    public Skill(String skill) {
         this.skill = skill;
     }
-    public Skill(String skill, int exp){
+    public Skill(String skill, int exp) {
         this.skill = skill;
         this.experience = exp;
     }
-    public String getSkill(){
+    public String getSkill() {
         return skill;
     }
 
-    public void setSkill(String skill){
+    public void setSkill(String skill) {
         this.skill = skill;
     }
 }

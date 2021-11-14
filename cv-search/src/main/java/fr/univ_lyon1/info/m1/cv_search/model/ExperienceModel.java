@@ -1,7 +1,7 @@
 package fr.univ_lyon1.info.m1.cv_search.model;
 
-public class ExperienceModel implements IModel{
-    ListFactory listFactory;
+public class ExperienceModel extends IModel {
+    private ListFactory listFactory;
     private ExperienceList experiences;
     private Model model;
 
@@ -29,19 +29,19 @@ public class ExperienceModel implements IModel{
         this.model = model;
     }
 
-    public ExperienceModel(Model model, ListFactory listFactory){
+    public ExperienceModel(Model model, ListFactory listFactory) {
         this.model = model;
         this.listFactory = listFactory;
         experiences = (ExperienceList) listFactory.getListOfElements("Experiences");
     }
-    public void addExp(Experience e){
+    public void addExp(Experience e) {
         experiences.addElement(e);
     }
-    public void removeExp(Experience e){
+    public void removeExp(Experience e) {
         experiences.removeElement(e);
     }
 
-    public void clearExp(){
+    public void clearExp() {
         experiences.clear();
     }
 

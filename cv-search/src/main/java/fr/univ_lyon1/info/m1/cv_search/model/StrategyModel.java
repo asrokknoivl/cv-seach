@@ -1,21 +1,19 @@
 package fr.univ_lyon1.info.m1.cv_search.model;
 
-import java.util.List;
-
-public class StrategyModel implements IModel {
-    ListFactory listFactory;
+public class StrategyModel extends IModel {
+    private ListFactory listFactory;
     private StrategyList strategies;
     private Strategy currentStrategy = new Strategy("None");
     private Model model;
 
-    public StrategyModel(Model model, ListFactory listFactory){
+    public StrategyModel(Model model, ListFactory listFactory) {
         this.model = model;
         this.listFactory = listFactory;
         strategies = (StrategyList) listFactory.getListOfElements("Strategies");
     }
     //STRATEGIES
     //initialize current strategies into the app
-    public void initStrategies(){
+    public void initStrategies() {
         Strategy none = new Strategy("None");
         Strategy all50 = new Strategy("All >= 50");
         Strategy all60 = new Strategy("All >= 60");

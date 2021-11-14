@@ -1,25 +1,31 @@
 package fr.univ_lyon1.info.m1.cv_search.view;
-import java.awt.*;
-import java.io.File;
 
 import fr.univ_lyon1.info.m1.cv_search.controller.Controller;
-import fr.univ_lyon1.info.m1.cv_search.model.*;
+
+
+import fr.univ_lyon1.info.m1.cv_search.model.Applicant;
+import fr.univ_lyon1.info.m1.cv_search.model.ApplicantList;
+import fr.univ_lyon1.info.m1.cv_search.model.Experience;
+import fr.univ_lyon1.info.m1.cv_search.model.ExperienceList;
+import fr.univ_lyon1.info.m1.cv_search.model.Skill;
+import fr.univ_lyon1.info.m1.cv_search.model.SkillList;
+import fr.univ_lyon1.info.m1.cv_search.model.Strategy;
+import fr.univ_lyon1.info.m1.cv_search.model.StrategyList;
+import fr.univ_lyon1.info.m1.cv_search.model.ViewObserver;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
-import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -32,7 +38,8 @@ public class View extends ViewObserver {
     private VBox resultBox = new VBox();
     private VBox expBox = new VBox();
     private HBox professionalExpBox = new HBox();
-    ScrollPane sp = new ScrollPane();
+    private ScrollPane sp;
+    private Controller ctrl;
 
     //constructor
     public View(Controller ctrl, Stage stage, int width, int height) {
@@ -86,9 +93,7 @@ public class View extends ViewObserver {
         root.setSpacing(40);
         root.setPadding(new Insets(30));
 
-        sp.setContent(root);
-
-        Scene scene = new Scene(sp, width, height);
+        Scene scene = new Scene(new ScrollPane(root), width, height);
         stage.setScene(scene);
         stage.show();
     }
@@ -203,7 +208,15 @@ public class View extends ViewObserver {
     public void updateApplicants() {
         resultBox.getChildren().clear();
         resultBox.setSpacing(10);
-        resultBox.getChildren().add(new Text("*************************************************************************************************************************************************************************************"));
+        resultBox.getChildren().add(
+                new Text(""
+                + "****************************"
+                + "****************************"
+                + "****************************"
+                + "*****************************"
+                + "******************************"
+                + "*************************"
+                + "*************"));
         for (Applicant a : (ApplicantList) ctrl.get("r")) {
             HBox name = new HBox();
             HBox avg = new HBox();
@@ -211,19 +224,28 @@ public class View extends ViewObserver {
             HBox expBox = new HBox();
             VBox exps = new VBox();
             exps.setSpacing(10);
-            HBox matchingScore = new HBox();
             name.getChildren().addAll(new Label("Name: "), new Text(a.getName()));
-            avg.getChildren().addAll(new Label("Average Skills Score (entered skills): "), new Text(Double.toString(a.getMoyenne())));
+            Text t = new Text(Double.toString(a.getMoyenne()));
+            avg.getChildren().addAll(new Label("Average Skills Score (entered skills): "), t);
             skills.getChildren().add(new Label("Skills: "));
-            for (String s : a.getSkills().keySet()){
+            for (String s : a.getSkills().keySet()) {
                 skills.getChildren().add(new Text(" " + s + ", "));
             }
             expBox.getChildren().add(new Label("Professional experiences: "));
-            for (Experience s : a.getExperiences().getList()){
-                exps.getChildren().add(new Text(s.getCompany()+ ", " +  s.getStartDate() + ", " + s.getEndDate()));
+            for (Experience s : a.getExperiences().getList()) {
+                String ts = s.getCompany() + ", " +  s.getStartDate() + ", " + s.getEndDate();
+                exps.getChildren().add(new Text(ts));
             }
             expBox.getChildren().add(exps);
-            resultBox.getChildren().addAll(name, avg, skills, expBox, new Text("*************************************************************************************************************************************************************************************"));
+            resultBox.getChildren().addAll(name, avg, skills, expBox,
+                    new Text(""
+                    + "*************************"
+                    + "*******************************"
+                    + "****************************"
+                    + "*****************************"
+                    + "******************************"
+                    + "*************************"
+                    + "*************"));
         }
         show();
     }
@@ -289,7 +311,8 @@ public class View extends ViewObserver {
                     + "-fx-border-width: 1;" + "-fx-border-insets: 5;"
                     + "-fx-border-radius: 5;" + "-fx-border-color: black;");
             newExperience.setAlignment(Pos.BASELINE_CENTER);
-            newExperience.getChildren().addAll(labelCompany, company, labelDuration, duration, buttonRemove);
+            newExperience.getChildren().addAll(labelCompany, company);
+            newExperience.getChildren().addAll(labelDuration, duration, buttonRemove);
             expBox.getChildren().add(newExperience);
         }
         show();
@@ -302,7 +325,8 @@ public class View extends ViewObserver {
     private Node getProfessionalExpBox() {
         professionalExpBox.getChildren().clear();
         int profExp = (int) ctrl.get("pexp");
-        professionalExpBox.getChildren().addAll(new Text(Integer.toString(profExp)), new Text(" years"));
+        Text y = new Text(" years");
+        professionalExpBox.getChildren().addAll(new Text(Integer.toString(profExp)), y);
         return professionalExpBox;
     }
 
@@ -325,7 +349,7 @@ public class View extends ViewObserver {
         return box;
     }
     @Override
-    public void updateProfExp(){
+    public void updateProfExp() {
         show();
     }
 }
