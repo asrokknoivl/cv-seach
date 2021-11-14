@@ -1,0 +1,14 @@
+name: XX YY
+skills:
+  c++: 45
+  java: 60
+  python: 75
+  perl: 40
+experience:
+  Amazon:
+    start: 2010
+    end: 2012
+    keywords:
+      - php
+      - javaScript
+      - c++

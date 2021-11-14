@@ -9,13 +9,13 @@ public class MoyenneAll {
         double nom = 0;
         boolean allSelected = true;
         for (Skill skl: model.getSkillModel().getSkills()){
-            if (!model.getSkillModel().isValid(skl)) {
-                size--;
-                continue;
-            }
+            int sklVal = 0;
             String sklValue = skl.getSkill().toLowerCase();
-            nom += a.getSkill(sklValue);
-            if (a.getSkill(sklValue) < n) {
+            sklVal = a.getSkill(sklValue);
+            System.out.println(sklVal);
+            nom += sklVal;
+
+            if (sklVal < n) {
                 allSelected = false;
             }
         }

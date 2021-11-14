@@ -4,28 +4,22 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class StrategyList implements Iterable<Strategy>, IElementList{
+public class StrategyList implements Iterable<Strategy>{
     private List<Strategy> strategies = new ArrayList<Strategy>();
 
     @Override
     public Iterator<Strategy> iterator() {
         return strategies.iterator();
     }
-
-    @Override
     public void addElement(Element e) {
         strategies.add((Strategy) e);
     }
-
-    @Override
     public void removeElement(Element e) {
         strategies.remove((Strategy) e);
     }
-    @Override
     public void clear(){
         strategies.clear();
     }
-    @Override
     public int size(){
         return strategies.size();
     }

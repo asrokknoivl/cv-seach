@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class ExperienceList implements Iterable<Experience>, IElementList{
+public class ExperienceList implements Iterable<Experience>{
     List<Experience> list = new ArrayList<Experience>();
 
     public List<Experience> getList() {
@@ -15,22 +15,18 @@ public class ExperienceList implements Iterable<Experience>, IElementList{
         this.list = list;
     }
 
-    @Override
     public void addElement(Element e) {
         list.add((Experience) e);
     }
 
-    @Override
     public void removeElement(Element e) {
         list.remove((Experience) e);
     }
 
-    @Override
     public void clear() {
         list.clear();
     }
 
-    @Override
     public int size() {
         return list.size();
     }

@@ -1,4 +1,5 @@
 package fr.univ_lyon1.info.m1.cv_search.view;
+import java.awt.*;
 import java.io.File;
 
 import fr.univ_lyon1.info.m1.cv_search.controller.Controller;
@@ -6,12 +7,14 @@ import fr.univ_lyon1.info.m1.cv_search.model.*;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -29,6 +32,7 @@ public class View extends ViewObserver {
     private VBox resultBox = new VBox();
     private VBox expBox = new VBox();
     private HBox professionalExpBox = new HBox();
+    ScrollPane sp = new ScrollPane();
 
     //constructor
     public View(Controller ctrl, Stage stage, int width, int height) {
@@ -44,10 +48,10 @@ public class View extends ViewObserver {
     public void show() {
         stage.setTitle("Search for CV");
         VBox skills = new VBox();
-        VBox strategies = new VBox();
         VBox exps = new VBox();
         VBox root = new VBox();
         VBox exp = new VBox();
+        VBox res = new VBox();
 
         Node newSkillBox = createNewSkillWidget();
         Node titleSkills = new Text("Added Skills");
@@ -64,8 +68,6 @@ public class View extends ViewObserver {
         exps.getChildren().addAll(experienceWidget, titleExps, experienceBox);
 
         root.getChildren().addAll(skills, strategySet, exps);
-        Node searchButton = createSearchWidget();
-        root.getChildren().add(searchButton);
 
         Node profExpBox = createProfExpBox();
         Node professionalExperience = getProfessionalExpBox();
@@ -76,12 +78,17 @@ public class View extends ViewObserver {
 
         Node titleRes = new Text("Matching Results");
         Node resultBox = getResultBox();
-        root.getChildren().addAll(titleRes, resultBox);
+        Node searchButton = createSearchWidget();
+        res.setSpacing(10);
+        res.getChildren().addAll(titleRes, searchButton, resultBox);
 
+        root.getChildren().add(res);
         root.setSpacing(40);
         root.setPadding(new Insets(30));
 
-        Scene scene = new Scene(root, width, height);
+        sp.setContent(root);
+
+        Scene scene = new Scene(sp, width, height);
         stage.setScene(scene);
         stage.show();
     }
@@ -196,15 +203,17 @@ public class View extends ViewObserver {
     public void updateApplicants() {
         resultBox.getChildren().clear();
         resultBox.setSpacing(10);
+        resultBox.getChildren().add(new Text("*************************************************************************************************************************************************************************************"));
         for (Applicant a : (ApplicantList) ctrl.get("r")) {
             HBox name = new HBox();
             HBox avg = new HBox();
             HBox skills = new HBox();
             HBox expBox = new HBox();
             VBox exps = new VBox();
+            exps.setSpacing(10);
             HBox matchingScore = new HBox();
             name.getChildren().addAll(new Label("Name: "), new Text(a.getName()));
-            avg.getChildren().addAll(new Label("Average Skills Score (entered): "), new Text(Double.toString(a.getMoyenne())));
+            avg.getChildren().addAll(new Label("Average Skills Score (entered skills): "), new Text(Double.toString(a.getMoyenne())));
             skills.getChildren().add(new Label("Skills: "));
             for (String s : a.getSkills().keySet()){
                 skills.getChildren().add(new Text(" " + s + ", "));
@@ -214,8 +223,7 @@ public class View extends ViewObserver {
                 exps.getChildren().add(new Text(s.getCompany()+ ", " +  s.getStartDate() + ", " + s.getEndDate()));
             }
             expBox.getChildren().add(exps);
-            resultBox.getChildren().addAll(name, avg, skills, expBox);
-            resultBox.setSpacing(5);
+            resultBox.getChildren().addAll(name, avg, skills, expBox, new Text("*************************************************************************************************************************************************************************************"));
         }
         show();
     }

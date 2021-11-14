@@ -4,14 +4,14 @@ import java.util.List;
 
 public class StrategyModel implements IModel {
     ListFactory listFactory;
-    private IElementList strategies;
+    private StrategyList strategies;
     private Strategy currentStrategy = new Strategy("None");
     private Model model;
 
     public StrategyModel(Model model, ListFactory listFactory){
         this.model = model;
         this.listFactory = listFactory;
-        strategies = (IElementList) listFactory.getListOfElements("Strategies");
+        strategies = (StrategyList) listFactory.getListOfElements("Strategies");
     }
     //STRATEGIES
     //initialize current strategies into the app

@@ -2,7 +2,7 @@ package fr.univ_lyon1.info.m1.cv_search.model;
 
 public class ExperienceModel implements IModel{
     ListFactory listFactory;
-    private IElementList experiences;
+    private ExperienceList experiences;
     private Model model;
 
     public ListFactory getListFactory() {
@@ -13,11 +13,11 @@ public class ExperienceModel implements IModel{
         this.listFactory = listFactory;
     }
 
-    public IElementList getExperiences() {
+    public ExperienceList getExperiences() {
         return experiences;
     }
 
-    public void setExperiences(IElementList experiences) {
+    public void setExperiences(ExperienceList experiences) {
         this.experiences = experiences;
     }
 
@@ -32,7 +32,7 @@ public class ExperienceModel implements IModel{
     public ExperienceModel(Model model, ListFactory listFactory){
         this.model = model;
         this.listFactory = listFactory;
-        experiences = (IElementList) listFactory.getListOfElements("Experiences");
+        experiences = (ExperienceList) listFactory.getListOfElements("Experiences");
     }
     public void addExp(Experience e){
         experiences.addElement(e);

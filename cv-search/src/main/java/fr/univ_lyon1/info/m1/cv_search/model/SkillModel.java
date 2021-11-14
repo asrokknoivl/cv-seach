@@ -4,8 +4,8 @@ import java.util.Collection;
 
 public class SkillModel implements IModel{
     ListFactory listFactory;
-    private IElementList skills;
-    private final IElementList validSkills;
+    private SkillList skills;
+    private final SkillList validSkills;
     private Model model;
     private int validSize;
 
@@ -22,8 +22,8 @@ public class SkillModel implements IModel{
     public SkillModel(Model model, ListFactory listFactory){
         this.listFactory = listFactory;
         this.model = model;
-        skills  = (IElementList) listFactory.getListOfElements("Skills");
-        validSkills = (IElementList) listFactory.getListOfElements("Skills");
+        skills  = (SkillList) listFactory.getListOfElements("Skills");
+        validSkills = (SkillList) listFactory.getListOfElements("Skills");
         validSize = validSkills.size();
     }
     public void initValidSkills(){

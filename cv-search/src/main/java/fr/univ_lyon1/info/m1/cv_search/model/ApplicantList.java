@@ -1,10 +1,12 @@
 package fr.univ_lyon1.info.m1.cv_search.model;
 
+import fr.univ_lyon1.info.m1.cv_search.App;
+
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class ApplicantList implements Iterable<Applicant>, IElementList{
+public class ApplicantList implements Iterable<Applicant>{
 
     private List<Applicant> list = new ArrayList<Applicant>();
 
@@ -13,21 +15,19 @@ public class ApplicantList implements Iterable<Applicant>, IElementList{
         return list.iterator();
     }
 
-    @Override
     public void addElement(Element e) {
         list.add((Applicant) e);
     }
-    @Override
+    public void addElementAtIndex(int x, Element e) {
+        list.add(x, (Applicant) e);
+    }
     public void removeElement(Element e) {
         list.remove((Applicant) e);
     }
-
-    @Override
     public void clear() {
         list.clear();
     }
 
-    @Override
     public int size() {
         return list.size();
     }

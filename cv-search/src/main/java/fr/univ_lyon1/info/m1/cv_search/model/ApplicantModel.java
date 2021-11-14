@@ -4,8 +4,8 @@ import fr.univ_lyon1.info.m1.cv_search.App;
 
 public class ApplicantModel implements IModel{
     ListFactory listFactory;
-    private IElementList applicants;
-    private IElementList resApplicants;
+    private ApplicantList applicants;
+    private ApplicantList resApplicants;
     private Model model;
     private IStrategy sAll = new StrategyAll();
     private IStrategy sHrmnc = new StrategyHarmonic();
@@ -57,7 +57,22 @@ public class ApplicantModel implements IModel{
             if (accepted && expChecked && a.getProfessionalExp()>=pexp){
                 double moy = (double) strategy.isAccepted(a, val, model).get("moyenne");
                 a.setMoyenne(moy);
-                resApplicants.addElement(a);
+                boolean notAdded = true;
+                int i = 0;
+                for (Applicant ra: resApplicants){
+                    if (moy >= ra.getMoyenne()){
+                        resApplicants.addElementAtIndex(i, a);
+                        notAdded = false;
+                        break;
+                    }else{
+                        i++;
+                    }
+                }
+
+                if (notAdded){
+                    resApplicants.addElement(a);
+                    continue;
+                }
             }
         }
     }
