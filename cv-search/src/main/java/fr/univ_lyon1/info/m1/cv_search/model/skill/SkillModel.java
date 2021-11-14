@@ -28,7 +28,11 @@ public class SkillModel extends IModel {
         validSkills = (SkillList) listFactory.getListOfElements("Skills");
         validSize = validSkills.size();
     }
-    public void initValidSkills() {
+    public void initValidSkills() { // when I added this part below,I was hoping to
+                                    // accept only certain skill values that are defined by
+                                    // the developer, but it doesn't seem so practical
+                                    // after a second thought, will keep it nonetheless
+                                    // for another use in the future.
         validSkills.addElement(new Skill("c"));
         validSkills.addElement(new Skill("c++"));
         validSkills.addElement(new Skill("java"));
