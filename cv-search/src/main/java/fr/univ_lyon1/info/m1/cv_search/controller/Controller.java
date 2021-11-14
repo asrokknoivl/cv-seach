@@ -79,14 +79,18 @@ public class Controller {
         notifyAllObservers_Applicants();
     }
     public void filter(String strategy){
-        int val = Integer.parseInt(strategy.split(" ")[strategy.split(" ").length-1]);
-        String type = strategy.split(" ")[0];
-        System.out.println(type);
-        switch (type){
-            case "All": model.getApplicantModel().filterApplicantsByAll(val); break;
-            case "Average": model.getApplicantModel().filterApplicantsByAverage(val); break;
-            case "Harmonic": model.getApplicantModel().filterApplicantsByHarmonicAverage(val); break;
-      }
+        try{
+            int val = Integer.parseInt(strategy.split(" ")[strategy.split(" ").length-1]);
+            String type = strategy.split(" ")[0];
+            System.out.println(type);
+            switch (type){
+                case "All": model.getApplicantModel().filterApplicantsByAll(val); break;
+                case "Average": model.getApplicantModel().filterApplicantsByAverage(val); break;
+                case "Harmonic": model.getApplicantModel().filterApplicantsByHarmonicAverage(val); break;
+        }
+        }catch (Exception e){
+            model.getApplicantModel().filterApplicantsByAll(0);
+        }
       notifyAllObservers_Applicants();
     }
 

@@ -5,7 +5,7 @@ import java.util.List;
 public class StrategyModel implements IModel {
     ListFactory listFactory;
     private IElementList strategies;
-    private Strategy currentStrategy = new Strategy("All >= 50");
+    private Strategy currentStrategy = new Strategy("None");
     private Model model;
 
     public StrategyModel(Model model, ListFactory listFactory){
@@ -16,10 +16,12 @@ public class StrategyModel implements IModel {
     //STRATEGIES
     //initialize current strategies into the app
     public void initStrategies(){
+        Strategy none = new Strategy("None");
         Strategy all50 = new Strategy("All >= 50");
         Strategy all60 = new Strategy("All >= 60");
         Strategy avg50 = new Strategy("Average >= 50");
         Strategy hrm50 = new Strategy("Harmonic Mean >= 50");
+        strategies.addElement(none);
         strategies.addElement(all50);
         strategies.addElement(all60);
         strategies.addElement(avg50);

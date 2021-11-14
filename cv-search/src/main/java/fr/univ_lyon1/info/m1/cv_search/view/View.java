@@ -195,8 +195,26 @@ public class View extends ViewObserver {
     @Override
     public void updateApplicants() {
         resultBox.getChildren().clear();
+        resultBox.setSpacing(10);
         for (Applicant a : (ApplicantList) ctrl.get("r")) {
-            resultBox.getChildren().addAll(new Label(a.getName()), new Label(Double.toString(a.getMoyenne())));
+            HBox name = new HBox();
+            HBox avg = new HBox();
+            HBox skills = new HBox();
+            HBox expBox = new HBox();
+            VBox exps = new VBox();
+            HBox matchingScore = new HBox();
+            name.getChildren().addAll(new Label("Name: "), new Text(a.getName()));
+            avg.getChildren().addAll(new Label("Average Skills Score (entered): "), new Text(Double.toString(a.getMoyenne())));
+            skills.getChildren().add(new Label("Skills: "));
+            for (String s : a.getSkills().keySet()){
+                skills.getChildren().add(new Text(" " + s + ", "));
+            }
+            expBox.getChildren().add(new Label("Professional experiences: "));
+            for (Experience s : a.getExperiences().getList()){
+                exps.getChildren().add(new Text(s.getCompany()+ ", " +  s.getStartDate() + ", " + s.getEndDate()));
+            }
+            expBox.getChildren().add(exps);
+            resultBox.getChildren().addAll(name, avg, skills, expBox);
             resultBox.setSpacing(5);
         }
         show();
