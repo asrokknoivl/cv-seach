@@ -1,4 +1,10 @@
-package fr.univ_lyon1.info.m1.cv_search.model;
+package fr.univ_lyon1.info.m1.cv_search.model.factory;
+
+import fr.univ_lyon1.info.m1.cv_search.model.Model;
+import fr.univ_lyon1.info.m1.cv_search.model.applicant.ApplicantModel;
+import fr.univ_lyon1.info.m1.cv_search.model.experience.ExperienceModel;
+import fr.univ_lyon1.info.m1.cv_search.model.skill.SkillModel;
+import fr.univ_lyon1.info.m1.cv_search.model.strategy.StrategyModel;
 
 public class ModelFactory {
     private Model model;

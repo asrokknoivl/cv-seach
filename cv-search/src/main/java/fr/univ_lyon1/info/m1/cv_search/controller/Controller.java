@@ -1,11 +1,11 @@
 package fr.univ_lyon1.info.m1.cv_search.controller;
 
 import fr.univ_lyon1.info.m1.cv_search.model.Element;
-import fr.univ_lyon1.info.m1.cv_search.model.Skill;
-import fr.univ_lyon1.info.m1.cv_search.model.Strategy;
-import fr.univ_lyon1.info.m1.cv_search.model.Experience;
+import fr.univ_lyon1.info.m1.cv_search.model.skill.Skill;
+import fr.univ_lyon1.info.m1.cv_search.model.strategy.Strategy;
+import fr.univ_lyon1.info.m1.cv_search.model.experience.Experience;
 import fr.univ_lyon1.info.m1.cv_search.model.Model;
-import fr.univ_lyon1.info.m1.cv_search.model.ViewObserver;
+import fr.univ_lyon1.info.m1.cv_search.model.observer.ViewObserver;
 
 import java.util.ArrayList;
 import java.util.List;

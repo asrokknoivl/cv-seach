@@ -1,4 +1,10 @@
-package fr.univ_lyon1.info.m1.cv_search.model;
+package fr.univ_lyon1.info.m1.cv_search.model.factory;
+
+import fr.univ_lyon1.info.m1.cv_search.model.applicant.ApplicantList;
+import fr.univ_lyon1.info.m1.cv_search.model.applicant.ApplicantListBuilder;
+import fr.univ_lyon1.info.m1.cv_search.model.experience.ExperienceList;
+import fr.univ_lyon1.info.m1.cv_search.model.skill.SkillList;
+import fr.univ_lyon1.info.m1.cv_search.model.strategy.StrategyList;
 
 import java.io.File;
 

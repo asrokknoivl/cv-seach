@@ -1,4 +1,8 @@
-package fr.univ_lyon1.info.m1.cv_search.model;
+package fr.univ_lyon1.info.m1.cv_search.model.skill;
+
+import fr.univ_lyon1.info.m1.cv_search.model.IModel;
+import fr.univ_lyon1.info.m1.cv_search.model.factory.ListFactory;
+import fr.univ_lyon1.info.m1.cv_search.model.Model;
 
 public class SkillModel extends IModel {
     private ListFactory listFactory;

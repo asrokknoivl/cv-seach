@@ -3,15 +3,15 @@ package fr.univ_lyon1.info.m1.cv_search.view;
 import fr.univ_lyon1.info.m1.cv_search.controller.Controller;
 
 
-import fr.univ_lyon1.info.m1.cv_search.model.Applicant;
-import fr.univ_lyon1.info.m1.cv_search.model.ApplicantList;
-import fr.univ_lyon1.info.m1.cv_search.model.Experience;
-import fr.univ_lyon1.info.m1.cv_search.model.ExperienceList;
-import fr.univ_lyon1.info.m1.cv_search.model.Skill;
-import fr.univ_lyon1.info.m1.cv_search.model.SkillList;
-import fr.univ_lyon1.info.m1.cv_search.model.Strategy;
-import fr.univ_lyon1.info.m1.cv_search.model.StrategyList;
-import fr.univ_lyon1.info.m1.cv_search.model.ViewObserver;
+import fr.univ_lyon1.info.m1.cv_search.model.applicant.Applicant;
+import fr.univ_lyon1.info.m1.cv_search.model.applicant.ApplicantList;
+import fr.univ_lyon1.info.m1.cv_search.model.experience.Experience;
+import fr.univ_lyon1.info.m1.cv_search.model.experience.ExperienceList;
+import fr.univ_lyon1.info.m1.cv_search.model.skill.Skill;
+import fr.univ_lyon1.info.m1.cv_search.model.skill.SkillList;
+import fr.univ_lyon1.info.m1.cv_search.model.strategy.Strategy;
+import fr.univ_lyon1.info.m1.cv_search.model.strategy.StrategyList;
+import fr.univ_lyon1.info.m1.cv_search.model.observer.ViewObserver;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -194,7 +194,11 @@ public class View extends ViewObserver {
             public void handle(ActionEvent event) {
                 String cs = (String) ctrl.get("css");
                 int val = 0;
-                val = Integer.parseInt(cs.split(" ")[cs.split(" ").length - 1]);
+                try {
+                    val = Integer.parseInt(cs.split(" ")[cs.split(" ").length - 1]);
+                } catch (Exception e) {
+                    val = 0;
+                }
                 String type = cs.split(" ")[0];
                 if (type.equals("All")) {
                     ctrl.filterAll(val);
@@ -203,7 +207,7 @@ public class View extends ViewObserver {
                 } else if (type.equals("Harmonic")) {
                     ctrl.filterHrmnc(val);
                 } else {
-                    ctrl.filterAll(val);
+                    ctrl.filterAll(0);
                 }
             }
         });

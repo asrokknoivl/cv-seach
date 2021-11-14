@@ -1,4 +1,14 @@
-package fr.univ_lyon1.info.m1.cv_search.model;
+package fr.univ_lyon1.info.m1.cv_search.model.applicant;
+
+import fr.univ_lyon1.info.m1.cv_search.model.IModel;
+import fr.univ_lyon1.info.m1.cv_search.model.Model;
+import fr.univ_lyon1.info.m1.cv_search.model.experience.Experience;
+import fr.univ_lyon1.info.m1.cv_search.model.experience.ExperienceList;
+import fr.univ_lyon1.info.m1.cv_search.model.factory.ListFactory;
+import fr.univ_lyon1.info.m1.cv_search.model.strategy.IStrategy;
+import fr.univ_lyon1.info.m1.cv_search.model.strategy.StrategyAll;
+import fr.univ_lyon1.info.m1.cv_search.model.strategy.StrategyAverage;
+import fr.univ_lyon1.info.m1.cv_search.model.strategy.StrategyHarmonic;
 
 public class ApplicantModel extends IModel {
     private ListFactory listFactory;

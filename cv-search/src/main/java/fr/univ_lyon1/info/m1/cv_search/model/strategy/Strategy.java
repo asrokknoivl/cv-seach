@@ -1,4 +1,6 @@
-package fr.univ_lyon1.info.m1.cv_search.model;
+package fr.univ_lyon1.info.m1.cv_search.model.strategy;
+
+import fr.univ_lyon1.info.m1.cv_search.model.Element;
 
 public class Strategy extends Element {
     private String strategy;
