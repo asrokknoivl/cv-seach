@@ -1,10 +1,14 @@
-package fr.univ_lyon1.info.m1.cv_search.model;
+package fr.univ_lyon1.info.m1.cv_search.model.applicant;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
+import fr.univ_lyon1.info.m1.cv_search.model.experience.Experience;
+import fr.univ_lyon1.info.m1.cv_search.model.experience.ExperienceList;
 import org.yaml.snakeyaml.Yaml;
 
 public class ApplicantBuilder {
@@ -26,6 +30,7 @@ public class ApplicantBuilder {
         Applicant a = new Applicant();
         Yaml yaml = new Yaml();
         Map<String, Object> map;
+        int profExp = 0;
         try {
             map = yaml.load(new FileInputStream(file));
         } catch (FileNotFoundException e) {
@@ -40,11 +45,30 @@ public class ApplicantBuilder {
         @SuppressWarnings("unchecked")
         Map<String, Integer> skills = (Map<String, Integer>) map.get("skills");
 
+        ExperienceList expList = new ExperienceList();
+
         for (String skill : skills.keySet()) {
             Integer value = skills.get(skill);
             a.setSkill(skill, value);
         }
 
+
+
+        Map<String, HashMap> experiences = (Map<String, HashMap>) map.get("experience");
+
+        for (String exp : experiences.keySet()) {
+            Experience e = new Experience();
+            e.setCompany(exp);
+            Map<String, Object> expSpecs = experiences.get(exp);
+            e.setStartDate((int) expSpecs.get("start"));
+            e.setEndDate((int) expSpecs.get("end"));
+            e.setKeywords((ArrayList) expSpecs.get("keywords"));
+            e.setDuration((int) expSpecs.get("end") - (int) expSpecs.get("start"));
+            expList.addElement(e);
+            profExp += ((int) expSpecs.get("end") - (int) expSpecs.get("start"));
+        }
+        a.setProfessionalExp(profExp);
+        a.setExperiences(expList);
         return a;
     }
 }

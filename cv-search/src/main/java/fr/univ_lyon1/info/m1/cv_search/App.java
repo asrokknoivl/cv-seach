@@ -1,6 +1,8 @@
 package fr.univ_lyon1.info.m1.cv_search;
 
-import fr.univ_lyon1.info.m1.cv_search.view.JfxView;
+import fr.univ_lyon1.info.m1.cv_search.controller.Controller;
+import fr.univ_lyon1.info.m1.cv_search.model.Model;
+import fr.univ_lyon1.info.m1.cv_search.view.View;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -14,7 +16,10 @@ public class App extends Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
-        new JfxView(stage, 600, 600);
+        Model model = new Model();
+        Controller controller = new Controller(model);
+        new View(controller, stage, 800, 600).show();
+        new View(controller, new Stage(), 500, 500).show();
     }
 
 
