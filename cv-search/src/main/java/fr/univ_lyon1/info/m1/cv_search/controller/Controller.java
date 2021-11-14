@@ -100,23 +100,16 @@ public class Controller {
         model.getApplicantModel().setProfExp(pexp);
         notifyAllObserversApplicants();
     }
-    public void filter(String strategy) {
-        try {
-            int val = Integer.parseInt(strategy.split(" ")[strategy.split(" ").length - 1]);
-            String type = strategy.split(" ")[0];
-            System.out.println(type);
-            switch (type) {
-                case "All": model.getApplicantModel().filterApplicantsByAll(val); break;
-                case "Average": model.getApplicantModel().filterApplicantsByAverage(val); break;
-                case "Harmonic": model.getApplicantModel().filterApplicantsByHarmonicAverage(val);
-                                 break;
-                default: System.out.println();
-        }
-        } catch (Exception e) {
-            model.getApplicantModel().filterApplicantsByAll(0);
-        }
-      notifyAllObserversApplicants();
+    public void filterAll(int val) {
+        model.getApplicantModel().filterApplicantsByAll(val);
+        notifyAllObserversApplicants();
     }
-
-
+    public void filterAvg(int val) {
+        model.getApplicantModel().filterApplicantsByAverage(val);
+        notifyAllObserversApplicants();
+    }
+    public void filterHrmnc(int val) {
+        model.getApplicantModel().filterApplicantsByHarmonicAverage(val);
+        notifyAllObserversApplicants();
+    }
 }

@@ -192,7 +192,19 @@ public class View extends ViewObserver {
         search.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                ctrl.filter(((Strategy) ctrl.get("cs")).getStrategy());
+                String cs = (String) ctrl.get("css");
+                int val = 0;
+                val = Integer.parseInt(cs.split(" ")[cs.split(" ").length - 1]);
+                String type = cs.split(" ")[0];
+                if (type.equals("All")) {
+                    ctrl.filterAll(val);
+                } else if (type.equals("Average")) {
+                    ctrl.filterAvg(val);
+                } else if (type.equals("Harmonic")) {
+                    ctrl.filterHrmnc(val);
+                } else {
+                    ctrl.filterAll(val);
+                }
             }
         });
         return search;
